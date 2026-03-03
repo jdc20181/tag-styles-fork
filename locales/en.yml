@@ -1,0 +1,14 @@
+en:
+  theme_metadata:
+    description: Assign color styles to selected tags.
+    settings:
+      yellow: Tags that should use the yellow preset.
+      orange: Tags that should use the orange preset.
+      red: Tags that should use the red preset.
+      green: Tags that should use the green preset.
+      lightblue: Tags that should use the light blue preset.
+      blue: Tags that should use the blue preset.
+      black: Tags that should use the black preset.
+      outline: Tags that should use the outline style.
+      color_target: Apply preset and custom colors to either the full tag or just the flair square.
+      custom_tag_colors: Custom mappings in the format tag-name:#RRGGBB (pipe-separated for multiple entries).

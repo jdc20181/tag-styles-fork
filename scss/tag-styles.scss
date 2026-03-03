@@ -1,0 +1,104 @@
+.tag-box,
+.discourse-tags,
+.topic-list .link-bottom-line,
+.extra-info-wrapper .topic-header-extra {
+  @mixin apply-tag-color($tag, $color) {
+    @if "#{$color_target}" == "flair" {
+      .discourse-tag.box[data-tag-name="#{to-lower-case($tag)}"] {
+        color: $color !important;
+        background-color: $color !important;
+        border-color: $color !important;
+
+        &:hover {
+          color: $color !important;
+          background-color: $color !important;
+          border-color: $color !important;
+        }
+      }
+    } @else {
+      .discourse-tag:not(.box)[data-tag-name="#{to-lower-case($tag)}"] {
+        color: var(--secondary) !important;
+        background-color: $color !important;
+        border-color: $color !important;
+
+        &:hover {
+          color: var(--secondary) !important;
+          background-color: $color !important;
+          border-color: $color !important;
+        }
+      }
+    }
+  }
+
+  @mixin apply-outline-style($tag) {
+    .discourse-tag:not(.box)[data-tag-name="#{to-lower-case($tag)}"] {
+      color: var(--tertiary-hover) !important;
+      background-color: var(--secondary) !important;
+      border: 1px solid var(--tertiary-hover) !important;
+
+      &:hover {
+        color: var(--tertiary-hover) !important;
+        background-color: var(--secondary) !important;
+      }
+    }
+  }
+
+  $tag-colors: (
+    yellow: (
+      #fdb300,
+      $yellow,
+    ),
+    orange: (
+      #ff7a00,
+      $orange,
+    ),
+    red: (
+      #ea3436,
+      $red,
+    ),
+    green: (
+      #52c50c,
+      $green,
+    ),
+    lightblue: (
+      #459bff,
+      $lightblue,
+    ),
+    blue: (
+      #007aff,
+      $blue,
+    ),
+    black: (
+      #000,
+      $black,
+    ),
+  );
+
+  @each $name, $values in $tag-colors {
+    $color: nth($values, 1);
+    $tags: str-to-list("#{nth($values, 2)}", "|");
+
+    @each $tag in $tags {
+      @include apply-tag-color($tag, $color);
+    }
+  }
+
+  $custom-colors: str-to-list("#{$custom_tag_colors}", "|");
+  @each $custom-item in $custom-colors {
+    $parts: str-to-list($custom-item, ":");
+
+    @if length($parts) >= 2 {
+      $custom-tag: nth($parts, 1);
+      $custom-color: nth($parts, 2);
+
+      @if str-length($custom-tag) > 0 and str-length($custom-color) > 0 {
+        @include apply-tag-color($custom-tag, unquote($custom-color));
+      }
+    }
+  }
+
+  $tags-outline: str-to-list("#{$outline}", "|");
+  @each $tag in $tags-outline {
+    @include apply-outline-style($tag);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Custom Theme Helpers - Tag Styles",
+  "component": true,
+  "authors": "Manuel Kostka",
+  "about_url": "",
+  "license_url": "",
+  "learn_more": "",
+  "theme_version": "0.1.0",
+  "minimum_discourse_version": null,
+  "maximum_discourse_version": null,
+  "assets": {},
+  "modifiers": {}
+}
